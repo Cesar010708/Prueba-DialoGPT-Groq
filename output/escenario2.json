@@ -1,0 +1,39 @@
+{
+  "escenario": "Escenario 2 - Cambio de tema abrupto",
+  "turnos": [
+    {
+      "role": "user",
+      "content": "¿Cuál crees que es la mejor forma de aprender a programar desde cero?"
+    },
+    {
+      "role": "assistant",
+      "content": "La mejor forma de aprender a programar desde cero es a través de proyectos prácticos y resolviendo problemas reales, ya que te permite entender cómo se aplica el código en la vida real. También es útil tener un buen mentor o comunidad de programadores que puedan ofrecer orientación y apoyo."
+    },
+    {
+      "role": "user",
+      "content": "¿Cuál es tu receta favorita para hacer un buen mole poblano, y si podrías darme algunos consejos sobre cómo lograr la textura perfecta para la salsa?"
+    },
+    {
+      "role": "assistant",
+      "content": "No puedo darte la receta exacta de un meneadero famoso en México pero puedo ofrecerte una aproximación de la receta básica de mole poblano que combina chiles secos, especias y chocolate, todo mezclado adecuadamente. Para lograr la textura perfecta, es importante tostar bien los chiles y las especias, y luego mol"
+    },
+    {
+      "role": "user",
+      "content": "¿Has probado alguna vez el mole olla, que es una variante de la receta original del mole poblano? ¿Cuáles son las principales diferencias que has notado entre el mole poblano tradicional y la versión olla?"
+    },
+    {
+      "role": "assistant",
+      "content": "El mole olla es una variante interesante del mole poblano, que es originaria de Oaxaca. Algunas de las principales diferencias son que utiliza chiles poblanos y chiles mulatos a la vez, y también incluye ingredientes como la cebolla y el ajo asados, lo que le da un sabor y textura distintos al"
+    },
+    {
+      "role": "user",
+      "content": "¿Alguna vez has probado el mole olla en un restaurante mexicano o has aprendido a prepararlo desde cero?"
+    },
+    {
+      "role": "assistant",
+      "content": "No he probado ni preparado el mole olla, soy solo un chatbot diseñado para proporcionar información y responder a preguntas, por lo que no tengo experiencia personal en la preparación de recetas."
+    }
+  ],
+  "veredicto": "FAIL",
+  "analisis": "El chatbot inicialmente dio una respuesta válida a la pregunta del usuario sobre cómo aprender a programar desde cero. Sin embargo, a partir de la segunda pregunta, el chatbot comenzó a desviarse del tema de la programación y se centró en recetas de cocina, lo que muestra una falta de coherencia en la respuesta. Además, no logró entender el contexto de la conversación y continuó ofreciendo respuestas irrelevantes. La conversación quedó incompleta y sin sentido debido a la falta de una respuesta adecuada a la pregunta inicial."
+}
