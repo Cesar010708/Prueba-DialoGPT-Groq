@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 dotenv.config();
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 async function llamarDialoGPT(historial) {
   const response = await fetch(
     "https://router.huggingface.co/v1/chat/completions",
@@ -27,6 +29,17 @@ async function llamarDialoGPT(historial) {
   );
 
   const data = await response.json();
+
+  if (data.error) {
+    console.error(`  [DialoGPT] Error: ${data.error.message || JSON.stringify(data.error)}`);
+    return "Lo siento, no pude procesar tu mensaje en este momento.";
+  }
+
+  if (!data.choices || !data.choices[0]) {
+    console.error(`  [DialoGPT] Respuesta inesperada:`, JSON.stringify(data));
+    return "Lo siento, no pude procesar tu mensaje en este momento.";
+  }
+
   return data.choices[0].message.content.trim();
 }
 
@@ -52,6 +65,17 @@ async function llamarGroq(historial, sistemaPrompt) {
   );
 
   const data = await response.json();
+
+  if (data.error) {
+    console.error(`  [Groq] Error: ${data.error.message || JSON.stringify(data.error)}`);
+    return "No pude generar una respuesta en este momento.";
+  }
+
+  if (!data.choices || !data.choices[0]) {
+    console.error(`  [Groq] Respuesta inesperada:`, JSON.stringify(data));
+    return "No pude generar una respuesta en este momento.";
+  }
+
   return data.choices[0].message.content.trim();
 }
 
@@ -72,6 +96,7 @@ async function ejecutarEscenario(nombreEscenario, mensajeInicial, sistemaPrompt,
     console.log("  DialoGPT:", respuestaDialoGPT);
 
     if (turno < 4) {
+      await sleep(1500);
       mensajeActual = await llamarGroq(
         [{ role: "user", content: `El chatbot respondió: "${respuestaDialoGPT}". ¿Qué le dices a continuación?` }],
         sistemaPrompt
@@ -79,23 +104,21 @@ async function ejecutarEscenario(nombreEscenario, mensajeInicial, sistemaPrompt,
     }
   }
 
-  // Evaluación
   const evaluacionPrompt = `Eres un evaluador de calidad de chatbots. Sé objetivo y crítico pero justo.
 Responde estas 3 preguntas sobre la conversación y un muy breve analisis:
 1. ¿El chatbot entendió los mensajes del usuario?
 2. ¿Las respuestas fueron coherentes con el contexto?
 3. ¿La conversación tuvo sentido o quedó incompleta?
 
-
 Responde ÚNICAMENTE con este JSON válido, sin markdown, sin texto extra, sin comillas faltantes:
-{"veredicto":"PASS o FAIL o PARCIAL",,"analisis":"texto aqui"}`;
+{"veredicto":"PASS o FAIL o PARCIAL","analisis":"texto aqui"}`;
 
   const respuestaEvaluacion = await llamarGroq(
     [{ role: "user", content: `Evalúa esta conversación: ${JSON.stringify(historial)}` }],
     evaluacionPrompt
   );
 
- let evaluacion;
+  let evaluacion;
   try {
     evaluacion = JSON.parse(respuestaEvaluacion);
   } catch {
@@ -115,6 +138,8 @@ Responde ÚNICAMENTE con este JSON válido, sin markdown, sin texto extra, sin c
   console.log("\nEvaluación:", evaluacion.veredicto);
   console.log("Análisis:", evaluacion.analisis);
   console.log(`Archivo guardado en output/${archivoSalida}`);
+
+  await sleep(3000);
 }
 
 // ESCENARIO 1 
@@ -170,4 +195,5 @@ Muéstrate frustrado y directo. Si el chatbot responde con algo genérico o no r
 Responde SOLO con el mensaje del usuario, sin explicaciones, sin comillas.`,
   "escenario4.json"
 );
+
 console.log("\n==========Fin de la prueba==========");
