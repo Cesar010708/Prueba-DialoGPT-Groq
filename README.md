@@ -60,14 +60,23 @@ El 4 porque la frustración del usuario es uno de los casos más comunes en sopo
 ## Estructura del proyecto
 Prueba-DialoGPT-Groq/
 ├── index.js
+
 ├── .env.example
+
 ├── .gitignore
+
 ├── package.json
+
 ├── README.md
+
 └── output/
+
 ├── escenario1.json
+
 ├── escenario2.json
+
 ├── escenario3.json
+
 └── escenario4.json
 
 ## Formato de resultados
