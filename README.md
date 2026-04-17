@@ -58,7 +58,7 @@ El 3 porque en la vida real los usuarios rara vez dan contexto completo — quer
 El 4 porque la frustración del usuario es uno de los casos más comunes en soporte real y pocos scripts de QA básico lo cubren.
 
 ## Estructura del proyecto
-prueba-tecnica/
+Prueba-DialoGPT-Groq/
 ├── index.js
 ├── .env.example
 ├── .gitignore
