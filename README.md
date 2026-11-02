@@ -1,4 +1,3 @@
-# Prueba-DialoGPT-Groq
 # Prueba Técnica — QA Engineer: Integración y análisis de chatbot
 
 Script que simula conversaciones entre dos IAs para evaluar la calidad de respuestas de un chatbot. Groq actúa como usuario simulado y evaluador, mientras que el chatbot evaluado responde y mantiene el contexto de la conversación.
@@ -102,3 +101,19 @@ Cada escenario es analizado respondiendo estas 3 preguntas:
 1. ¿El chatbot entendió los mensajes del usuario?
 2. ¿Las respuestas fueron coherentes con el contexto?
 3. ¿La conversación tuvo sentido o quedó incompleta?
+
+## Mi rol
+
+Prueba técnica que resolví para un proceso de selección de QA de chatbots: diseño de los cuatro
+escenarios (el 3 y el 4 son propuestas mías), el script que hace conversar a los dos modelos, el
+evaluador con criterios explícitos y el formato de resultados en JSON.
+
+---
+
+## English summary
+
+Technical assessment for a chatbot QA role. A Node.js script makes two LLMs talk: Groq
+(`llama-3.1-8b-instant`) plays the user and then judges the conversation, while a Hugging Face
+Router model plays the chatbot under test. Four scenarios (simple request, abrupt topic change,
+ambiguous references and emotional pressure; the last two proposed by me) are evaluated on
+understanding, coherence and completeness, with results saved as JSON in `/output`.
